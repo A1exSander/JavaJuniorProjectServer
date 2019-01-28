@@ -4,20 +4,19 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Meal {
-    private List<Ingredient> mealList = new ArrayList<>(10);
-    private Ingredient finalIngredient;
+    private List<Portion> mealList = new ArrayList<>(10);
+    private Portion portion;
 
-    public void addIngredient(Ingredient ingredient, int mass){
-        mealList.add(finalIngredient);
+    public void addIngredient(Portion portion){
+        mealList.add(portion);
     }
 
-    public void deleteIngredient(Ingredient ingredient){
-        mealList.remove(ingredient);
+    public void deleteIngredient(Portion portion){
+        mealList.remove(portion);
     }
 
-    public List<Ingredient> getMealList() {
+    public List<Portion> getMealList() {
         return mealList;
     }
-
 
 }
