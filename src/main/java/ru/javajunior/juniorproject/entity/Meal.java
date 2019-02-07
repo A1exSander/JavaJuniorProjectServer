@@ -18,5 +18,4 @@ public class Meal {
     public List<Portion> getMealList() {
         return mealList;
     }
-
 }

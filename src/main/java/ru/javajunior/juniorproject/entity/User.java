@@ -2,26 +2,51 @@ package ru.javajunior.juniorproject.entity;
 
 // TODO: Занесение пользователей в базу данных
 
+import org.hibernate.annotations.GenericGenerator;
+
+import javax.persistence.*;
+
+@Entity
+@Table(name = "user")
 public class User {
+    @Id
+    @GeneratedValue(generator = "increment")
+    @GenericGenerator(name= "increment", strategy= "increment")
+    @Column(name = "id", length = 6, nullable = false)
+    private int id;
+    @Column(name = "login", nullable = false)
     private String login;
+    @Column(name = "password", nullable = false)
     private String password;
+    @Column(name = "imt")
     private double imt;
+    @Column(name = "weight", nullable = false)
     private double weight;
+    @Column(name = "height", nullable = false)
     private double height;
+    @Column(name = "age", nullable = false)
     private int age;
+    @Column(name = "goalProtein")
     private double goalProtein;
+    @Column(name = "goalFat")
     private double goalFat;
+    @Column(name = "goalCarbohydrates")
     private double goalCarbohydrates;
+    @Column(name = "goalEnergy")
     private double goalEnergy;
+    @Column(name = "sex", nullable = false)
     private String sex;
+    @Column(name = "bmr")
     private double bmr;
     private final String MALE = "MALE";
     private final String FEMALE = "FEMALE";
 
+    public int getId() {
+        return id;
+    }
 
-    public User(String login, String password) {
-        this.login = login;
-        this.password = password;
+    public void setId(int id) {
+        this.id = id;
     }
 
     public double getImt() {

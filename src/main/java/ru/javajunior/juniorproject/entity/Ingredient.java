@@ -2,15 +2,35 @@ package ru.javajunior.juniorproject.entity;
 
 // TODO: Занесение в базу данных ингредиентов
 
+import org.hibernate.annotations.GenericGenerator;
+
+import javax.persistence.*;
+
+@Entity
+@Table(name = "ingredient")
 public class Ingredient {
+    @Id
+    @GeneratedValue(generator = "increment")
+    @GenericGenerator(name= "increment", strategy= "increment")
+    @Column(name = "id", length = 6, nullable = false)
+    private int id;
+    @Column(name = "energy", nullable = false)
     private final double energy;
+    @Column(name = "protein", nullable = false)
     private final double protein;
+    @Column(name = "fat", nullable = false)
     private final double fat;
+    @Column(name = "carbohydrates", nullable = false)
     private final double carbohydrates;
+    @Column(name = "sugar")
     private final double sugar;
+    @Column(name = "fatSaturated")
     private final double fatSaturated;
+    @Column(name = "fatPolyUnsaturated")
     private final double fatPolyUnsaturated;
+    @Column(name = "fatMonoUnsaturated")
     private final double fatMonoUnsaturated;
+    @Column(name = "glycemicIndex")
     private final double glycemicIndex;
 
     public Ingredient(IngredientBuilder builder){

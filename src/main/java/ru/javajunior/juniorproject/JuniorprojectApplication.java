@@ -12,3 +12,7 @@ public class JuniorprojectApplication {
 
 }
 
+//okhttp
+//Retrofit
+//vogella Retrofit okhttp example
+
