@@ -7,7 +7,7 @@ import org.hibernate.annotations.GenericGenerator;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "user")
+@Table(name = "user_table")
 public class User {
     @Id
     @GeneratedValue(generator = "increment")
@@ -34,12 +34,10 @@ public class User {
     private double goalCarbohydrates;
     @Column(name = "goalEnergy")
     private double goalEnergy;
-    @Column(name = "sex", nullable = false)
-    private String sex;
+    @Column(name = "gender", nullable = false)
+    private String gender;
     @Column(name = "bmr")
     private double bmr;
-    private final String MALE = "MALE";
-    private final String FEMALE = "FEMALE";
 
     public int getId() {
         return id;
@@ -125,19 +123,38 @@ public class User {
         this.goalEnergy = goalEnergy;
     }
 
-    public String getSex() {
-        return sex;
+    public String getGender() {
+        return gender;
     }
 
-    public void setSex(String sex) {
-        this.sex = sex;
+    public void setGender(String gender) {
+        this.gender = gender;
     }
 
     public double getBmr() {
-        if (sex.equals(MALE)){
+        if (gender.equals("MALE")){
             return 10*weight + 6.25*height - 5*age + 5;
         } else {
             return 10*weight + 6.25*height - 5*age - 161;
         }
+    }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "id=" + id +
+                ", login='" + login + '\'' +
+                ", password='" + password + '\'' +
+                ", imt=" + imt +
+                ", weight=" + weight +
+                ", height=" + height +
+                ", age=" + age +
+                ", goalProtein=" + goalProtein +
+                ", goalFat=" + goalFat +
+                ", goalCarbohydrates=" + goalCarbohydrates +
+                ", goalEnergy=" + goalEnergy +
+                ", gender='" + gender + '\'' +
+                ", bmr=" + bmr +
+                '}';
     }
 }
