@@ -20,31 +20,8 @@ public class UserController {
         return repository.save(user);
     }
 
-
-    @RequestMapping("/")
-    public String index(){
-
-        return "index";
+    @RequestMapping("/user/login")
+    User Login (@RequestParam(value = "login", required = true) String login, @RequestParam(value = "password", required = true) String password) {
+        return repository.findUser(login, password);
     }
-
-//    @RequestMapping(value = "/user/create",
-//            method = RequestMethod.GET)
-//    public String showForm(@ModelAttribute User user,
-//                           Model model)
-//    {
-//        model.addAttribute("user", new User());
-//        return "add_user";
-//    }
-
-//    @RequestMapping(value = "/user/create",
-//            method = RequestMethod.POST)
-//
-//    public String submitform(@ModelAttribute User user, Model model)
-//    {
-//        repository.save(user);
-//
-//        List<User> users = (List<User>) repository.findAll();
-//        model.addAttribute("users", users);
-//        return "user_list";
-//    }
 }

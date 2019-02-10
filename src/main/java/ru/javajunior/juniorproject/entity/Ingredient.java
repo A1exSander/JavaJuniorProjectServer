@@ -31,6 +31,8 @@ public class Ingredient {
     private double fatMonoUnsaturated;
     @Column(name = "glycemicIndex")
     private double glycemicIndex;
+    @Column(name = "glycemicLoad")
+    private double glycemicLoad;
 
     public int getId() {
         return id;
@@ -120,6 +122,14 @@ public class Ingredient {
         this.glycemicIndex = glycemicIndex;
     }
 
+    public double getGlycemicLoad() {
+        return glycemicLoad;
+    }
+
+    public void setGlycemicLoad(double glycemicLoad) {
+        this.glycemicLoad = glycemicLoad;
+    }
+
     @Override
     public String toString() {
         return "Ingredient{" +
@@ -134,6 +144,7 @@ public class Ingredient {
                 ", fatPolyUnsaturated=" + fatPolyUnsaturated +
                 ", fatMonoUnsaturated=" + fatMonoUnsaturated +
                 ", glycemicIndex=" + glycemicIndex +
+                ", glycemicLoad=" + glycemicLoad +
                 '}';
     }
 }
