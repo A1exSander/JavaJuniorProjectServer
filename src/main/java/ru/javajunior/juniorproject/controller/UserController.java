@@ -21,7 +21,8 @@ public class UserController {
     }
 
     @RequestMapping("/user/login")
-    User Login (@RequestParam(value = "login", required = true) String login, @RequestParam(value = "password", required = true) String password) {
-        return repository.findUser(login, password);
+    User Login (@RequestBody User user) {
+        System.out.println(repository.findUser(user.getLogin(), user.getPassword()).toString());
+        return repository.findUser(user.getLogin(), user.getPassword());
     }
 }

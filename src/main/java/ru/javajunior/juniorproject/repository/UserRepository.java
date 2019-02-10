@@ -7,6 +7,6 @@ import org.springframework.data.repository.query.Param;
 import ru.javajunior.juniorproject.entity.User;
 
 public interface UserRepository extends JpaRepository<User, Integer> {
-    @Query("SELECT u FROM user_table u WHERE (u.login) = :login) AND (u.password) = :password")
+    @Query("SELECT u FROM User u WHERE u.login = :login AND u.password = :password")
     User findUser(@Param("login") String login, @Param("password") String password);
 }
