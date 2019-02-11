@@ -1,44 +1,74 @@
 package ru.javajunior.juniorproject.entity;
 
-// TODO: Занесение дневного рациона в таблицу пользователя в базе данных
 
-import java.util.Calendar;
+import org.hibernate.annotations.GenericGenerator;
 
+import javax.persistence.*;
+
+@Entity
+@Table(name = "ration")
 public class Ration {
-    private Meal breakfast;
-    private Meal dinner;
-    private Meal supper;
-    private Calendar day;
+    @Id
+    @GeneratedValue(generator = "increment")
+    @GenericGenerator(name= "increment", strategy= "increment")
+    @Column(name = "id", length = 6, nullable = false)
+    private int rationID;
+    @Column(name = "userID", nullable = false)
+    private int userID;
+    @Column(name = "ingredientID", nullable =false)
+    private int ingredientID;
+    @Column(name = "mass", nullable = false)
+    private int mass;
+    @Column(name = "BrDinSup", nullable = false)
+    private String BrDinSup;
+    @Column(name = "date", nullable = false)
+    private String date;
 
-    public Meal getBreakfast() {
-        return breakfast;
+    public int getRationID() {
+        return rationID;
     }
 
-    public void setBreakfast(Meal breakfast) {
-        this.breakfast = breakfast;
+    public void setRationID(int rationID) {
+        this.rationID = rationID;
     }
 
-    public Meal getDinner() {
-        return dinner;
+    public int getUserID() {
+        return userID;
     }
 
-    public void setDinner(Meal dinner) {
-        this.dinner = dinner;
+    public void setUserID(int userID) {
+        this.userID = userID;
     }
 
-    public Meal getSupper() {
-        return supper;
+    public int getIngredientID() {
+        return ingredientID;
     }
 
-    public void setSupper(Meal supper) {
-        this.supper = supper;
+    public void setIngredientID(int ingredientID) {
+        this.ingredientID = ingredientID;
     }
 
-    public Calendar getDay() {
-        return day;
+    public int getMass() {
+        return mass;
     }
 
-    public void setDay(Calendar day) {
-        this.day = day;
+    public void setMass(int mass) {
+        this.mass = mass;
+    }
+
+    public String getBrDinSup() {
+        return BrDinSup;
+    }
+
+    public void setBrDinSup(String brDinSup) {
+        BrDinSup = brDinSup;
+    }
+
+    public String getDate() {
+        return date;
+    }
+
+    public void setDate(String date) {
+        this.date = date;
     }
 }

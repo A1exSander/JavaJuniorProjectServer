@@ -1,7 +1,5 @@
 package ru.javajunior.juniorproject.entity;
 
-// TODO: Занесение пользователей в базу данных
-
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
