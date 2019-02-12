@@ -1,5 +1,7 @@
 package ru.javajunior.juniorproject.entity;
 
+// TODO: Занесение пользователей в базу данных
+
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
@@ -11,7 +13,7 @@ public class User {
     @GeneratedValue(generator = "increment")
     @GenericGenerator(name= "increment", strategy= "increment")
     @Column(name = "id", length = 6, nullable = false)
-    private int id;
+    private int userId;
     @Column(name = "login", nullable = false)
     private String login;
     @Column(name = "password", nullable = false)
@@ -24,12 +26,6 @@ public class User {
     private double height;
     @Column(name = "age", nullable = false)
     private int age;
-    @Column(name = "goalProtein")
-    private double goalProtein;
-    @Column(name = "goalFat")
-    private double goalFat;
-    @Column(name = "goalCarbohydrates")
-    private double goalCarbohydrates;
     @Column(name = "goalEnergy")
     private double goalEnergy;
     @Column(name = "gender", nullable = false)
@@ -37,16 +33,20 @@ public class User {
     @Column(name = "bmr")
     private double bmr;
 
-    public int getId() {
-        return id;
+    public int getUserId() {
+        return userId;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setUserId(int userId) {
+        this.userId = userId;
     }
 
     public double getImt() {
-        return imt = weight/(height*height);
+        return imt;
+    }
+
+    public void setImt(double imt) {
+        this.imt = imt;
     }
 
     public double getWeight() {
@@ -89,30 +89,6 @@ public class User {
         this.password = password;
     }
 
-    public double getGoalProtein() {
-        return goalProtein;
-    }
-
-    public void setGoalProtein(double goalProtein) {
-        this.goalProtein = goalProtein;
-    }
-
-    public double getGoalFat() {
-        return goalFat;
-    }
-
-    public void setGoalFat(double goalFat) {
-        this.goalFat = goalFat;
-    }
-
-    public double getGoalCarbohydrates() {
-        return goalCarbohydrates;
-    }
-
-    public void setGoalCarbohydrates(double goalCarbohydrates) {
-        this.goalCarbohydrates = goalCarbohydrates;
-    }
-
     public double getGoalEnergy() {
         return goalEnergy;
     }
@@ -130,26 +106,23 @@ public class User {
     }
 
     public double getBmr() {
-        if (gender.equals("MALE")){
-            return 10*weight + 6.25*height - 5*age + 5;
-        } else {
-            return 10*weight + 6.25*height - 5*age - 161;
-        }
+        return bmr;
+    }
+
+    public void setBmr(double bmr) {
+        this.bmr = bmr;
     }
 
     @Override
     public String toString() {
         return "User{" +
-                "id=" + id +
+                "userId=" + userId +
                 ", login='" + login + '\'' +
                 ", password='" + password + '\'' +
                 ", imt=" + imt +
                 ", weight=" + weight +
                 ", height=" + height +
                 ", age=" + age +
-                ", goalProtein=" + goalProtein +
-                ", goalFat=" + goalFat +
-                ", goalCarbohydrates=" + goalCarbohydrates +
                 ", goalEnergy=" + goalEnergy +
                 ", gender='" + gender + '\'' +
                 ", bmr=" + bmr +

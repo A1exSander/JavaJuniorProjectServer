@@ -11,18 +11,24 @@ import ru.javajunior.juniorproject.repository.UserRepository;
 @RestController
 public class UserController {
     @Autowired
-    private UserRepository repository;
+    private UserRepository userRepository;
 
     @PostMapping("/user/create")
     User addUser(@RequestBody User user) {
         System.out.println(user);
-
-        return repository.save(user);
+        if (user.getGender().equals("MALE")){
+            user.setBmr(10*user.getWeight() + 6.25*user.getHeight() - 5*user.getAge() + 5);
+        } else {
+            user.setBmr(10*user.getWeight() + 6.25*user.getHeight() - 5*user.getAge() - 161);
+        }
+        user.setImt(user.getWeight()/(user.getWeight()*user.getHeight()));
+        return userRepository.save(user);
     }
 
     @RequestMapping("/user/login")
     User Login (@RequestBody User user) {
-        System.out.println(repository.findUser(user.getLogin(), user.getPassword()).toString());
-        return repository.findUser(user.getLogin(), user.getPassword());
+        System.out.println(userRepository.findUser(user.getLogin(), user.getPassword()).toString());
+
+        return userRepository.findUser(user.getLogin(), user.getPassword());
     }
 }

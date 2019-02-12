@@ -3,6 +3,7 @@ package ru.javajunior.juniorproject.entity;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Table(name = "ingredient")
@@ -11,7 +12,7 @@ public class Ingredient {
     @GeneratedValue(generator = "increment")
     @GenericGenerator(name= "increment", strategy= "increment")
     @Column(name = "id", length = 6, nullable = false)
-    private int id;
+    private int ingredientId;
     private String ingredientName;
     @Column(name = "energy", nullable = false)
     private double energy;
@@ -33,13 +34,16 @@ public class Ingredient {
     private double glycemicIndex;
     @Column(name = "glycemicLoad")
     private double glycemicLoad;
+    @ManyToMany(mappedBy = "ingredients",fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    private List<Ration> rations;
 
-    public int getId() {
-        return id;
+
+    public int getIngredientId() {
+        return ingredientId;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setIngredientId(int ingredientId) {
+        this.ingredientId = ingredientId;
     }
 
     public String getIngredientName() {
@@ -133,7 +137,7 @@ public class Ingredient {
     @Override
     public String toString() {
         return "Ingredient{" +
-                "id=" + id +
+                "id=" + ingredientId +
                 ", ingredientName='" + ingredientName + '\'' +
                 ", energy=" + energy +
                 ", protein=" + protein +

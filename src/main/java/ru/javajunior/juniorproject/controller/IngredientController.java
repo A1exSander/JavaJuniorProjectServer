@@ -3,6 +3,7 @@ package ru.javajunior.juniorproject.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import ru.javajunior.juniorproject.entity.Ingredient;
 import ru.javajunior.juniorproject.repository.IngredientRepository;
@@ -10,12 +11,17 @@ import ru.javajunior.juniorproject.repository.IngredientRepository;
 @RestController
 public class IngredientController {
     @Autowired
-    private IngredientRepository repository;
+    private IngredientRepository ingredientRepository;
 
     @PostMapping("/ingredient/create")
-    Ingredient addIngredient(@RequestBody Ingredient ingredient) {
+    public Ingredient addIngredient(@RequestBody Ingredient ingredient) {
         System.out.println(ingredient);
 
-        return repository.save(ingredient);
+        return ingredientRepository.save(ingredient);
+    }
+    @RequestMapping("/ingredient/getAll")
+    public Iterable<Ingredient> getAllIngredients() {
+        return ingredientRepository.findAll();
+
     }
 }
