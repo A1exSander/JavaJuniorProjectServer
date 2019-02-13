@@ -1,7 +1,5 @@
 package ru.javajunior.juniorproject.entity;
 
-// TODO: Занесение пользователей в базу данных
-
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
@@ -12,7 +10,7 @@ public class User {
     @Id
     @GeneratedValue(generator = "increment")
     @GenericGenerator(name= "increment", strategy= "increment")
-    @Column(name = "id", length = 6, nullable = false)
+    @Column(name = "userId", length = 6, nullable = false)
     private int userId;
     @Column(name = "login", nullable = false)
     private String login;

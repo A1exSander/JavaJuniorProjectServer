@@ -1,79 +1,97 @@
 package ru.javajunior.juniorproject.entity;
 
+import org.hibernate.annotations.GenericGenerator;
+
+import javax.persistence.*;
+
+@Entity
+@Table(name = "portion")
 public class Portion {
-    private Ingredient ingredient;
-    private double energy;
-    private double protein;
-    private double fat;
-    private double carbohydrates;
-    private double sugar;
-    private double fatSaturated;
-    private double fatPolyUnsaturated;
-    private double fatMonoUnsaturated;
-    private double glycemicIndex;
-    private double mass;
-    private double gl;
+    @Id
+    @GeneratedValue(generator = "increment")
+    @GenericGenerator(name= "increment", strategy= "increment")
+    @Column(name = "portionId", length = 6, nullable = false)
+    private int portionID;
+    @Column(name = "mass", nullable = false)
+    private int mass;
+    @Column(name = "brDinSup", nullable = false)
+    private String brDinSup;
+    @Column(name = "date", nullable = false)
+    private String date;
+    @Column (name = "userId", nullable = false)
+    private int userId;
+//    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+//    @JoinColumn(name = "portionUserId", nullable = false)
+//    private User user;
+    @Column(name = "ingredientId", nullable = false)
+    private int ingredientId;
+//    @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+//    @JoinTable(name = "portion_ingredient", joinColumns = { @JoinColumn(name = "portion_id") },
+//            inverseJoinColumns = { @JoinColumn(name = "ingredient_id") })
 
-    public Portion(Ingredient ingredient, double mass) {
-        this.ingredient = ingredient;
-        this.mass = mass;
-        this.energy = ingredient.getEnergy()/100*mass;
-        this.protein = ingredient.getProtein()/100*mass;
-        this.fat = ingredient.getFat()/100*mass;
-        this.carbohydrates = ingredient.getCarbohydrates()/100*mass;
-        this.sugar = ingredient.getSugar()/100*mass;
-        this.fatSaturated = ingredient.getFatSaturated()/100*mass;
-        this.fatMonoUnsaturated = ingredient.getFatMonoUnsaturated()/100*mass;
-        this.fatPolyUnsaturated = ingredient.getFatPolyUnsaturated()/100*mass;
-        this.glycemicIndex = ingredient.getGlycemicIndex()/100*mass;
-        this.gl = ingredient.getCarbohydrates()/mass*ingredient.getGlycemicIndex();
+//    private List<Ingredient> ingredients;
+
+    public int getPortionID() {
+        return portionID;
     }
 
-    public Ingredient getIngredient() {
-        return ingredient;
+    public void setPortionID(int portionID) {
+        this.portionID = portionID;
     }
 
-    public double getEnergy() {
-        return energy;
-    }
-
-    public double getProtein() {
-        return protein;
-    }
-
-    public double getFat() {
-        return fat;
-    }
-
-    public double getCarbohydrates() {
-        return carbohydrates;
-    }
-
-    public double getSugar() {
-        return sugar;
-    }
-
-    public double getFatSaturated() {
-        return fatSaturated;
-    }
-
-    public double getFatPolyUnsaturated() {
-        return fatPolyUnsaturated;
-    }
-
-    public double getFatMonoUnsaturated() {
-        return fatMonoUnsaturated;
-    }
-
-    public double getGlycemicIndex() {
-        return glycemicIndex;
-    }
-
-    public double getMass() {
+    public int getMass() {
         return mass;
     }
 
-    public double getGl() {
-        return gl;
+    public void setMass(int mass) {
+        this.mass = mass;
     }
+
+    public String getBrDinSup() {
+        return brDinSup;
+    }
+
+    public void setBrDinSup(String brDinSup) {
+        this.brDinSup = brDinSup;
+    }
+
+    public String getDate() {
+        return date;
+    }
+
+    public void setDate(String date) {
+        this.date = date;
+    }
+
+    public int getUserId() {
+        return userId;
+    }
+
+    public void setUserId(int userId) {
+        this.userId = userId;
+    }
+
+//    public User getUser() {
+//        return user;
+//    }
+//
+//    public void setUser(User user) {
+//        this.user = user;
+//    }
+
+    public int getIngredientId() {
+        return ingredientId;
+    }
+
+    public void setIngredientId(int ingredientId) {
+        this.ingredientId = ingredientId;
+    }
+
+//    public List<Ingredient> getIngredients() {
+//        return ingredients;
+//    }
+//
+//    public void setIngredients(List<Ingredient> ingredients) {
+//        this.ingredients = ingredients;
+//    }
 }
